@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import Cards from './components/Cards.jsx'
 
 function App() {
 
@@ -19,11 +20,11 @@ function App() {
   if (events === undefined) return "loading";
   return (
     <>
-      <div id="container" className="grid-cols-[200px_minmax(900px,1fr)_100px]">
+      <div id="cardsContainer">
         {events.map((elem, id) => (
           <div key={id}>
             <h1>{elem.title}</h1>
-            <p className="text-2xl font-bold underline">~ {elem.address_name}, {elem.address_street}, {elem.address_zipcode}, {elem.address_city} ~</p>
+            <p>~ {elem.address_name}, {elem.address_street}, {elem.address_zipcode}, {elem.address_city} ~</p>
           </div>
         ))}
       </div>
