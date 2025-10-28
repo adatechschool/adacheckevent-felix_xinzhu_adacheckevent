@@ -1,13 +1,14 @@
-import './App.css'
-import Cards from './components/Cards.jsx'
+import './App.css';
+import Cards from './components/Cards.jsx';
+import SearchBar from './components/SearchBar.jsx';
 
 function App() {
 
   return (
     <>
-      <div id="cardsContainer">
-        <Cards />
-      </div>
+
+      <SearchBar />
+      <Cards />
     </>
   );
 }

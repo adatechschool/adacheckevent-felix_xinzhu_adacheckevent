@@ -1,0 +1,12 @@
+#searchBarContainer {
+  display:flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+#searchBar {
+    padding : 5px;
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+}

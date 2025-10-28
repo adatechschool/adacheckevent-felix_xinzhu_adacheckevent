@@ -19,7 +19,7 @@ function Cards() {
 
   if (events === undefined) return "loading";
   return (
-    <>
+    <div id="cardsContainer">
       {events.map((elem, id) => (
         <div class="eventCard" key={id}>
           {elem.cover_url && (
@@ -37,7 +37,7 @@ function Cards() {
               <h2>{elem.date_description}</h2>
             )}
 
-{/*appeler le component ButtonSeeMore ici*/};
+            {/*appeler le component ButtonSeeMore ici*/};
 
             {/* l'adresse complète doit aller dans la section "Voir plus" :
             {(elem.address_street && elem.address_zipcode) && (
@@ -49,8 +49,8 @@ function Cards() {
           </div>
         </div>
       ))}
-    </>
-  );
+      </div>
+      );
 }
 
-export default Cards
+      export default Cards
