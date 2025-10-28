@@ -1,0 +1,22 @@
+.eventCard {
+    width: 400px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+}
+
+.cover {
+    width: 100%;
+}
+
+.cover img {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+    z-index: 1;
+}
+
+.informations {
+    margin-top: 10px;
+}

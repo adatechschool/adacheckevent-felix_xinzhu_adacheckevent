@@ -5,8 +5,8 @@ function App() {
 
   return (
     <>
-      <div id="container">
-        <Cards/>
+      <div id="cardsContainer">
+        <Cards />
       </div>
     </>
   );
