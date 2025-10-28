@@ -13,8 +13,6 @@ grâce à l’API officielle
 
 ## Journal
 
-### 28/10/2025
-
 ### 27/10/2025
 Initiation du projet
 Téléchargement des packages React, Tailwind
