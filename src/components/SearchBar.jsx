@@ -1,18 +1,22 @@
-import './SearchBar.css'
+import './SearchBar.css';
 
-function SearchBar() {
-    const searchItems = (e, id) => {
-        console.log(e)
-    }
+// Reçoit la fonction de mise à jour de App
+function SearchBar({ onSearchChange }) { 
+
+    const searchItems = (e) => {
+        const textInput = e.target.value;
+        onSearchChange(textInput); 
+    };
 
     return (
         <div id="searchBarContainer">
-            <label for="searchBar">Cherchez votre événement :</label>
+            <label htmlFor="searchBar">Cherchez votre événement :</label>
             <input
                 type="text"
                 id="searchBar"
                 name="searchBar"
-                onInput={(e) => searchItems(e)} />
+                onInput={searchItems} 
+            />
         </div>
     );
 }
