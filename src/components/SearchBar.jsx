@@ -1,17 +1,20 @@
 import './SearchBar.css'
 
 function SearchBar() {
-
+    const searchItems = (e, id) => {
+        console.log(e)
+    }
 
     return (
         <div id="searchBarContainer">
-            <label>Cherchez votre événement</label>
+            <label for="searchBar">Cherchez votre événement :</label>
             <input
                 type="text"
                 id="searchBar"
-                name="name" />
+                name="searchBar"
+                onInput={(e) => searchItems(e)} />
         </div>
-    )
+    );
 }
 
 export default SearchBar;

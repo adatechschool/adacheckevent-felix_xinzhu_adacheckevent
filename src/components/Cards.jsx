@@ -37,7 +37,7 @@ function Cards() {
               <h2>{elem.date_description}</h2>
             )}
 
-            {/*appeler le component ButtonSeeMore ici*/};
+            {/*appeler le component ButtonSeeMore ici*/}
 
             {/* l'adresse complète doit aller dans la section "Voir plus" :
             {(elem.address_street && elem.address_zipcode) && (
