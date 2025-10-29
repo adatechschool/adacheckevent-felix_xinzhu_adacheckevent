@@ -9,7 +9,7 @@ function SearchBar({ onSearchChange }) {
 
     return (
         <div id="searchBarContainer">
-            <label htmlFor="searchBar">Cherchez votre événement :</label>
+            <label name="searchBar">Cherchez votre événement :</label>
             <input
                 type="text"
                 id="searchBar"
