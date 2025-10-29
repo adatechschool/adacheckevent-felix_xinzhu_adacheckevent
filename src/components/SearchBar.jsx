@@ -1,4 +1,4 @@
-import './SearchBar.css';
+import '../../public/style/SearchBar.css';
 
 function SearchBar({ onSearchChange }) { 
 
