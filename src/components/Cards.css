@@ -1,5 +1,15 @@
+*{
+    width:100%
+}
+
+#cardsContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .eventCard {
-    width: 400px;
     padding: 10px;
     background-color: white;
     border-radius: 20px;
@@ -13,10 +23,12 @@
 .cover img {
     object-fit: cover;
     border-radius: 10px;
-    width: 100%;
     z-index: 1;
 }
 
 .informations {
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
+    width: 100%;
 }
