@@ -20,3 +20,9 @@ Division du projet en tickets
 Création de la fonction fetch API
 Création des branches Cards et SeeMore
 Mise en place du bouton See More
+
+### 28/10/2025
+Mise en page des cartes
+Création de la fonctionnalité "voir plus"
+Création de la barre de recherche
+Création du bouton "page suivante"
