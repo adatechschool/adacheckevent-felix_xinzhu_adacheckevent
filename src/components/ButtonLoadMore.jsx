@@ -1,13 +1,11 @@
-export function ButtonLoadMore({ onLoadMore}) {
-
-
+export function ButtonLoadMore({offset}) {
 
   function handlePage () {
-    onLoadMore()
+    offset((prevOffset) => prevOffset + 5);
+
   }
 
-
   return (
-    <button onClick={handlePage}>Charger plus d'événements</button>
+    <button type="button" onClick={handlePage}>Charger plus d'événements</button>
   );
 }
