@@ -1,4 +1,4 @@
-import '../../public/style/SearchBar.css';
+import '../../src/style/SearchBar.css';
 
 function SearchBar({ onSearchChange }) { 
 
@@ -14,7 +14,7 @@ function SearchBar({ onSearchChange }) {
                 type="text"
                 id="searchBar"
                 name="searchBar"
-                onInput={searchItems} 
+                onInput={searchItems}
             />
         </div>
     );

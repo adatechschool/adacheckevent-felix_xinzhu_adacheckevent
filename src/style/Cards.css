@@ -1,19 +1,22 @@
-*{
-    width:100%
+* {
+    width: 100%
 }
 
 #cardsContainer {
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .eventCard {
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
     background-color: white;
     border-radius: 20px;
     color: black;
+    gap: 10px;
+    align-items: center;
 }
 
 .cover {
@@ -26,9 +29,14 @@
     z-index: 1;
 }
 
-.informations {
+.alwaysVisible,
+.seeMoreInfos,
+.shortInfos {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
     width: 100%;
+
+    & p {
+        text-align: justify;
+    }
 }
