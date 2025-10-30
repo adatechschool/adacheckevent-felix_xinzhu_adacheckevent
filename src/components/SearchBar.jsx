@@ -1,10 +1,10 @@
 import '../../src/style/SearchBar.css';
 
-function SearchBar({ onSearchChange }) { 
+function SearchBar({ onSearchChange, initialText = "" }) {
 
     const searchItems = (e) => {
         const textInput = e.target.value;
-        onSearchChange(textInput); 
+        onSearchChange(textInput);
     };
 
     return (
@@ -15,6 +15,7 @@ function SearchBar({ onSearchChange }) {
                 id="searchBar"
                 name="searchBar"
                 onInput={searchItems}
+                defaultValue={initialText}
             />
         </div>
     );

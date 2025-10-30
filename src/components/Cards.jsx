@@ -73,7 +73,7 @@ const Cards = ({ events }) => {
                   <strong>Catégorie : </strong>
                   {splitCategories(elem.qfap_tags).map((category, index, array) => (
                     <span key={index} className="category-link">
-                      <a href={`/tags/${cleanText(category)}`}>
+                      <a href={`/tag/${cleanText(category)}`}>
                         {cleanText(category)}
                       </a>
                       {index < array.length - 1 && <span> ~ </span>}
