@@ -7,23 +7,30 @@ import useEventsData from "./hooks/useEventsData";
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  const { events, isLoading, setOffset } = useEventsData(searchText);
+  const { events, isLoading, setLimit } = useEventsData(searchText);
 
   const handleSearch = (text) => {
     setSearchText(text);
+    setLimit(5); // reset à 5 sur une nouvelle recherche
   };
 
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + 5); // ajoute 5 de plus
+  };
 
   return (
     <>
       <SearchBar onSearchChange={handleSearch} />
-      {isLoading ? (
+
+      {isLoading && events.length === 0 ? (
         <p>Chargement des événements...</p>
       ) : (
         <Cards events={events} />
       )}
 
-      <ButtonLoadMore offset={setOffset} />
+      {!isLoading && events.length > 0 && (
+        <ButtonLoadMore onClick={handleLoadMore} />
+      )}
     </>
   );
 }
