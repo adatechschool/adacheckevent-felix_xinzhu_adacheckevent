@@ -28,6 +28,6 @@ Création de la barre de recherche\
 Création du bouton "page suivante"
 
 ### 29/10/2025
-Merge branch card, boutonNext et boutonVoirPlus avec main
-WIP: amélioration affichage cards
-WIP: buttonLoadMore offset
+Merge branch card, boutonNext et boutonVoirPlus avec main\
+WIP: amélioration affichage cards\
+WIP: buttonLoadMore offset\
