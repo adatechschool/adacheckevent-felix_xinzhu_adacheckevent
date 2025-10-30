@@ -3,18 +3,16 @@ import { useState, useEffect } from "react";
 const useEventsData = (searchText) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [limit, setLimit] = useState(5)
+  const [limit, setLimit] = useState(5);
 
   const loadData = async (query = "") => {
-    
-    // Sauvegarde la position du scroll actuelle
     const currentScroll = window.scrollY;
-
     setIsLoading(true);
-    let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?&limit=${limit}`;
+
+    let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=${limit}`;
 
     if (query.length >= 3) {
-      url += `&where=title%20like%20%22${encodeURIComponent(query)}%22`; //permet de formater wheretitlelike en format url
+      url += `&where=title%20like%20%22${encodeURIComponent(query)}%22`;
     }
 
     try {
@@ -26,17 +24,15 @@ const useEventsData = (searchText) => {
       setEvents([]);
     } finally {
       setIsLoading(false);
-      
-      //  Restaure la position du scroll après le rendu
-       setTimeout(() => {
-         window.scrollTo(0, currentScroll);
-       }, 20);
+      setTimeout(() => {
+        window.scrollTo(0, currentScroll);
+      }, 20);
     }
   };
 
   useEffect(() => {
     loadData(searchText);
-  }, [searchText, limit]); //dépendances permettent de limiter et mettre à jour les éléments (ici l'url)
+  }, [searchText, limit]);
 
   return { events, isLoading, setLimit };
 };
