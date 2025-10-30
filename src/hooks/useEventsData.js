@@ -1,35 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useEventsData = (searchText) => {
-    const [events, setEvents] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [events, setEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [limit, setLimit] = useState(5);
 
-    const loadData = async (query = "") => {
-        setIsLoading(true);
-        const limit = 20;
-        let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=${limit}`;
+  const loadData = async (query = "") => {
+    const currentScroll = window.scrollY;
+    setIsLoading(true);
 
-        if (query.length >= 3) {
-            url += `&where=title%20like%20%22${encodeURIComponent(query)}%22`;
-        }
+    let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=${limit}`;
 
-        try {
-            const res = await fetch(url);
-            const data = await res.json();
-            setEvents(data.results);
-        } catch (error) {
-            console.error("Erreur lors du chargement des données:", error);
-            setEvents([]);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    if (query.length >= 3) {
+      url += `&where=title%20like%20%22${encodeURIComponent(query)}%22`;
+    }
 
-    useEffect(() => {
-        loadData(searchText);
-    }, [searchText]);
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setEvents(data.results);
+    } catch (error) {
+      console.error("Erreur lors du chargement des données:", error);
+      setEvents([]);
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => {
+        window.scrollTo(0, currentScroll);
+      }, 20);
+    }
+  };
 
-    return { events, isLoading };
+  useEffect(() => {
+    loadData(searchText);
+  }, [searchText, limit]);
+
+  return { events, isLoading, setLimit };
 };
 
 export default useEventsData;
