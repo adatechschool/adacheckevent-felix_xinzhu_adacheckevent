@@ -41,11 +41,11 @@ const Cards = ({ events }) => {
 
           {clickedEvent !== elem.id ? (
             <div class="shortInfos">
-              <p>{reduceText(cleanText(elem.description))}</p>
+              <p class="description">{reduceText(cleanText(elem.description))}</p>
             </div>
           ) : (
-            <div class="seeMoreInfos">
-              <p>{cleanText(elem.description)}</p>
+            <div class="seeMoreInfos" >
+              <p class="description">{cleanText(elem.description)}</p>
               <br />
               {elem.contact_organisation_name && (<p><strong>Organisé par : </strong>{cleanText(elem.contact_organisation_name)}</p>)}
               {(elem.locations[0].text || elem.locations[0].address_name || elem.locations[0].address_street || elem.locations[0].address_zipcode || elem.locations[0].address_city) && (
@@ -62,7 +62,7 @@ const Cards = ({ events }) => {
                 {elem.date_start && (<p><strong>Début : </strong>{elem.date_start}</p>)}
                 {elem.date_end && (<p><strong>Fin : </strong>{elem.date_end}</p>)}
               </>)}
-              {elem.contact_url && (<p><strong>Site : </strong><a href={elem.contact_url}>visiter</a></p>)}
+              {elem.contact_url && (<p><strong>Site : </strong><a href={elem.contact_url} target="_blank">visiter</a></p>)}
               {elem.contact_phone && (<p><strong>Téléphone : </strong><a href={`tel:${elem.contact_phone.replace(/\s/g, '')}`}>{elem.contact_phone}</a></p>)}
               {elem.contact_mail && (<p><strong>E-mail : </strong><a href={`mailto:${elem.contact_mail.replace(/\s/g, '')}`}>{elem.contact_mail}</a></p>)}
               {elem.price_type !== "gratuit" && (<p><strong>{capitalizeFirstLetter(cleanText(elem.price_type))} : </strong>{cleanText(elem.price_detail)}</p>)}

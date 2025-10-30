@@ -4,8 +4,10 @@
 
 #cardsContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .eventCard {
@@ -17,14 +19,20 @@
     color: black;
     gap: 10px;
     align-items: center;
+    width: 300px;
+    height: 600px;
 }
 
 .cover {
     width: 100%;
+    height: 163px;
 }
 
 .cover img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
     border-radius: 10px;
     z-index: 1;
 }
@@ -35,8 +43,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    text-align: left;
+}
 
-    & p {
+.description {
         text-align: justify;
     }
+
+.seeMoreInfos {
+    flex: 1;
+    overflow-y: scroll;
 }
