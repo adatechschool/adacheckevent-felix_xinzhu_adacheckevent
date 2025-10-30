@@ -7,15 +7,15 @@ import useEventsData from "./hooks/useEventsData";
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  const { events, isLoading, setLimit } = useEventsData(searchText);
+  const { events, isLoading, setOffSet } = useEventsData(searchText);
 
   const handleSearch = (text) => {
     setSearchText(text);
-    setLimit(5); // reset à 5 sur une nouvelle recherche
+    setOffSet(0)   //remettre offset à zéro quand on fait une nouvelle recherche 
   };
 
   const handleLoadMore = () => {
-    setLimit((prev) => prev + 5); // ajoute 5 de plus
+    setOffSet((value) => value + 5); // ajoute 5 de plus   
   };
 
   return (
