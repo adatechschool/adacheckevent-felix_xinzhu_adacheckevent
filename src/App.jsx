@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <SearchBar onSearchChange={handleSearch} initialText={searchText} />
-
+ 
       {isLoading && events.length === 0 ? (
         <p>Chargement des événements...</p>
       ) : (

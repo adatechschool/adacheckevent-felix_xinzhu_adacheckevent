@@ -1,5 +1,3 @@
-import '../../src/style/ButtonSeeMore.css';
-
 export function ButtonSeeMore({ id, clickedEvent, setClickedEvent }) {
 
     function handleClick(id) {
@@ -10,7 +8,7 @@ export function ButtonSeeMore({ id, clickedEvent, setClickedEvent }) {
         }
     }
     return (
-        <button class="button" id="ButtonSeeMore" onClick={() => handleClick(id)}>
+        <button class="button" id="ButtonSeeMore" className="cursor-pointer font-medium w-24 m-0 p-3 mt-auto rounded-[20px] bg-gray-300" onClick={() => handleClick(id)}>
             {clickedEvent === id ? "Voir moins" : "Voir plus"}
         </button>
     );

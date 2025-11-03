@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ButtonSeeMore } from './ButtonSeeMore';
-import '../../src/style/Cards.css';
 
 const Cards = ({ events }) => {
 
@@ -27,25 +26,25 @@ const Cards = ({ events }) => {
 
 
   return (
-    <div id="cardsContainer">
+    <div id="cardsContainer" className="cardsContainer flex flex-row flex-wrap justify-center gap-[20px]">
       {events.map((elem) => (
-        <div class="eventCard" key={elem.id}>
+        <div className="eventCard flex flex-col p-5 bg-white text-black items-center gap-[10px] rounded-[20px] w-[300px] h-[550px]" key={elem.id}>
           {elem.cover_url && (
-            <div class="cover">
-              <a href={elem.access_link} target="_blank"><img src={elem.cover_url} alt={elem.cover_alt} /></a>
+            <div className="cover w-full h-40">
+              <a href={elem.access_link} target="_blank"><img className="w-full h-full object-cover object-center rounded-[10px]" src={elem.cover_url} alt={elem.cover_alt} /></a>
             </div>
           )}
-          <div class="alwaysVisible">
+          <div className="alwaysVisible flex flex-col w-full text-left">
             <a href={elem.access_link} target="_blank"><h1 className="text-6xl">{cleanText(elem.title)}</h1></a>
           </div>
 
           {clickedEvent !== elem.id ? (
-            <div class="shortInfos">
-              <p class="description">{reduceText(cleanText(elem.description))}</p>
+            <div className="shortInfos flex flex-col w-full text-left">
+              <p className="description text-justify">{reduceText(cleanText(elem.description))}</p>
             </div>
           ) : (
-            <div class="seeMoreInfos" >
-              <p class="description">{cleanText(elem.description)}</p>
+            <div className="seeMoreInfos flex flex-col w-full text-left overflow-y-scroll flex-1" >
+              <p className="description text-justify">{cleanText(elem.description)}</p>
               <br />
               {elem.contact_organisation_name && (<p><strong>Organisé par : </strong>{cleanText(elem.contact_organisation_name)}</p>)}
               {(elem.locations[0].text || elem.locations[0].address_name || elem.locations[0].address_street || elem.locations[0].address_zipcode || elem.locations[0].address_city) && (
