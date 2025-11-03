@@ -6,8 +6,12 @@ const Cards = ({ events }) => {
   const [clickedEvent, setClickedEvent] = useState();
 
   const cleanText = (val) => {
+    if(val !== null){
     const target = val.replace(/<[^>]*>/g, "").trim();
     return target;
+    } else{
+      return ("")
+    }
   };
 
   const capitalizeFirstLetter = (val) => {
@@ -26,25 +30,25 @@ const Cards = ({ events }) => {
 
 
   return (
-    <div id="cardsContainer" className="cardsContainer flex flex-row flex-wrap justify-center gap-[20px]">
+    <div id="cardsContainer" className='flex flex-row flex-wrap justify-center gap-[20px]'>
       {events.map((elem) => (
-        <div className="eventCard flex flex-col p-5 bg-white text-black items-center gap-[10px] rounded-[20px] w-[300px] h-[550px]" key={elem.id}>
+        <div class="eventCard" key={elem.id} className='flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-[20px] p-4' >
           {elem.cover_url && (
-            <div className="cover w-full h-40">
-              <a href={elem.access_link} target="_blank"><img className="w-full h-full object-cover object-center rounded-[10px]" src={elem.cover_url} alt={elem.cover_alt} /></a>
+            <div class="cover" className='w-full h-1/3 rounded-[10px]'>
+              <a href={elem.access_link} target="_blank"><img src={elem.cover_url} alt={elem.cover_alt} className='w-full h-full object-cover rounded-[10px] object-center'/></a>
             </div>
           )}
-          <div className="alwaysVisible flex flex-col w-full text-left">
-            <a href={elem.access_link} target="_blank"><h1 className="text-6xl">{cleanText(elem.title)}</h1></a>
+          <div class="alwaysVisible" className='flex flex-col w-full text-left'>
+            <a href={elem.access_link} target="_blank"><h1 className="text-2xl text-[#354bcf]">{cleanText(elem.title)}</h1></a>
           </div>
 
           {clickedEvent !== elem.id ? (
-            <div className="shortInfos flex flex-col w-full text-left">
-              <p className="description text-justify">{reduceText(cleanText(elem.description))}</p>
+            <div class="shortInfos" className='flex flex-col w-full text-left'>
+              <p class="description">{reduceText(cleanText(elem.description))}</p>
             </div>
           ) : (
-            <div className="seeMoreInfos flex flex-col w-full text-left overflow-y-scroll flex-1" >
-              <p className="description text-justify">{cleanText(elem.description)}</p>
+            <div class="seeMoreInfos" className='flex flex-col w-full text-left overflow-y-scroll'>
+              <p class="description" className='text-left'>{cleanText(elem.description)}</p>
               <br />
               {elem.contact_organisation_name && (<p><strong>Organisé par : </strong>{cleanText(elem.contact_organisation_name)}</p>)}
               {(elem.locations[0].text || elem.locations[0].address_name || elem.locations[0].address_street || elem.locations[0].address_zipcode || elem.locations[0].address_city) && (

@@ -31,3 +31,7 @@ Création du bouton "page suivante"
 Merge branch card, boutonNext et boutonVoirPlus avec main\
 WIP: amélioration affichage cards\
 WIP: buttonLoadMore offset\
+
+### 31/10/2025
+Ajouter les tags comme éléments de recherche possible\
+Exploration du Tailwind en braches 

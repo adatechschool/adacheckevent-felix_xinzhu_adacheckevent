@@ -8,7 +8,8 @@ export function ButtonSeeMore({ id, clickedEvent, setClickedEvent }) {
         }
     }
     return (
-        <button class="button" id="ButtonSeeMore" className="cursor-pointer font-medium w-24 m-0 p-3 mt-auto rounded-[20px] bg-gray-300" onClick={() => handleClick(id)}>
+        <button class="button" id="ButtonSeeMore" onClick={() => handleClick(id)} 
+        className='w-24 m-0 p-2 mt-auto rounded-3xl bg-[#D3D3D3] hover:bg-[#354bcf] hover:text-white'>
             {clickedEvent === id ? "Voir moins" : "Voir plus"}
         </button>
     );
