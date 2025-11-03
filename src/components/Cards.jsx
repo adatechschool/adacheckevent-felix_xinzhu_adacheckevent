@@ -17,9 +17,13 @@ const Cards = ({ events }) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
 
-  const reduceText = (string) => {
-    let newString = string.split("").slice(0, 200).join("") + " (...)";
-    return newString;
+  const reduceText = (string, limit) => {
+    if (string.length > limit) {
+      let newString = string.split("").slice(0, limit).join("") + "...";
+      return newString;
+    } else {
+      return string
+    }
   };
 
   const splitCategories = (tags) => {
@@ -49,18 +53,34 @@ const Cards = ({ events }) => {
               </a>
             </div>
           )}
-          <div class="alwaysVisible" className="flex flex-col w-full text-left">
-            <a href={elem.access_link} target="_blank">
-              <h1 className="text-2xl text-[#354bcf]">
-                {cleanText(elem.title)}
-              </h1>
-            </a>
-          </div>
+          {clickedEvent !== elem.id ? (
+            <div
+              class="alwaysVisible"
+              className="flex flex-col w-full text-left"
+            >
+              <a href={elem.access_link} target="_blank">
+                <h1 className="text-2xl text-[#354bcf]">
+                  {reduceText(cleanText(elem.title),50)}
+                </h1>
+              </a>
+            </div>
+          ) : (
+            <div
+              class="alwaysVisible"
+              className="flex flex-col w-full text-left"
+            >
+              <a href={elem.access_link} target="_blank">
+                <h1 className="text-2xl text-[#354bcf]">
+                  {cleanText(elem.title)}
+                </h1>
+              </a>
+            </div>
+          )}
 
           {clickedEvent !== elem.id ? (
             <div class="shortInfos" className="flex flex-col w-full text-left">
               <p class="description">
-                {reduceText(cleanText(elem.description))}
+                {reduceText(cleanText(elem.description),200)}
               </p>
             </div>
           ) : (
