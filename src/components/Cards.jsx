@@ -32,10 +32,10 @@ const Cards = ({ events }) => {
   return (
     <div id="cardsContainer" className='flex flex-row flex-wrap justify-center gap-[20px]'>
       {events.map((elem) => (
-        <div class="eventCard" key={elem.id} className='flex flex-col bg-white text-black items-center rounded-lg w-[300px] h-[600px] gap-[20px] p-3' >
+        <div class="eventCard" key={elem.id} className='flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-[20px] p-4' >
           {elem.cover_url && (
-            <div class="cover" className='w-full h-1/3'>
-              <a href={elem.access_link} target="_blank"><img src={elem.cover_url} alt={elem.cover_alt} className='w-full h-full object-cover object-center'/></a>
+            <div class="cover" className='w-full h-1/3 rounded-[10px]'>
+              <a href={elem.access_link} target="_blank"><img src={elem.cover_url} alt={elem.cover_alt} className='w-full h-full object-cover rounded-[10px] object-center'/></a>
             </div>
           )}
           <div class="alwaysVisible" className='flex flex-col w-full text-left'>
