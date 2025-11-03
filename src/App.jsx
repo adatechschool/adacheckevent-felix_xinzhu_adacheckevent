@@ -18,6 +18,7 @@ const getInitialSearchText = () => {
 function App() {
   const [searchText, setSearchText] = useState(getInitialSearchText);
   const { events, isLoading, setOffSet } = useEventsData(searchText);
+  const [favArr, setFavArr] = useState([])
 
   const handleSearch = (text) => {
     setSearchText(text);
@@ -35,11 +36,11 @@ function App() {
       </div>
 
       <SearchBar onSearchChange={handleSearch} initialText={searchText} />
-
+      <p>{favArr}</p>
       {isLoading && events.length === 0 ? (
         <p>Chargement des événements...</p>
       ) : (
-        <Cards events={events} />
+        <Cards events={events} arr={favArr} setArr={setFavArr}/>
       )}
 
       {!isLoading && events.length > 0 && (

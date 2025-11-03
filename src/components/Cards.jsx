@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { ButtonSeeMore } from "./ButtonSeeMore";
+import { FavorisIcon } from "./FavorisIcon";
 
-const Cards = ({ events }) => {
+const Cards = ({ events, arr, setArr}) => {
   const [clickedEvent, setClickedEvent] = useState();
+
 
   const cleanText = (val) => {
     if (val !== null) {
@@ -22,7 +24,7 @@ const Cards = ({ events }) => {
       let newString = string.split("").slice(0, limit).join("") + "...";
       return newString;
     } else {
-      return string
+      return string;
     }
   };
 
@@ -30,6 +32,7 @@ const Cards = ({ events }) => {
     const tag = tags.split(";");
     return tag;
   };
+
 
   return (
     <div
@@ -43,7 +46,10 @@ const Cards = ({ events }) => {
           className="flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-[20px] p-4"
         >
           {elem.cover_url && (
-            <div class="cover" className="w-full h-1/3 rounded-[10px]">
+            <div class="cover" className="relative w-full h-1/3 rounded-[10px]">
+              <FavorisIcon 
+              id={elem.id} arr={arr} setArr={setArr}
+              />
               <a href={elem.access_link} target="_blank">
                 <img
                   src={elem.cover_url}
@@ -60,7 +66,7 @@ const Cards = ({ events }) => {
             >
               <a href={elem.access_link} target="_blank">
                 <h1 className="text-2xl text-[#354bcf]">
-                  {reduceText(cleanText(elem.title),50)}
+                  {reduceText(cleanText(elem.title), 50)}
                 </h1>
               </a>
             </div>
@@ -80,7 +86,7 @@ const Cards = ({ events }) => {
           {clickedEvent !== elem.id ? (
             <div class="shortInfos" className="flex flex-col w-full text-left">
               <p class="description">
-                {reduceText(cleanText(elem.description),200)}
+                {reduceText(cleanText(elem.description), 200)}
               </p>
             </div>
           ) : (
@@ -217,6 +223,7 @@ const Cards = ({ events }) => {
             clickedEvent={clickedEvent}
             setClickedEvent={setClickedEvent}
           />
+          {/* <p>{favArr}</p> */}
         </div>
       ))}
     </div>
