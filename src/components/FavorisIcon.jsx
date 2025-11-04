@@ -7,7 +7,7 @@ export function FavorisIcon({ id, arr, setArr}) {
   const handleFavoris = (id) => {
     setIsFav(!isFav);
     if (!isFav) {
-      console.log(id) 
+      // console.log(id) 
       setArr((value) => [...value, id])
     } else {
       setArr((value) => value.filter((item) => item !== id));
