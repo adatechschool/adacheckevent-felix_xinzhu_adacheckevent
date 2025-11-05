@@ -17,7 +17,7 @@ const getInitialSearchText = () => {
 
 function App() {
   const [searchText, setSearchText] = useState(getInitialSearchText);
-    const [favArr, setFavArr] = useState([]);
+  const [favArr, setFavArr] = useState([]);
   // const [favData, setFavData] = useState([])
   const [showFav, setShowFav] = useState(false);
   const { events, isLoading, setOffSet } = useEventsData(
@@ -48,8 +48,11 @@ function App() {
           {showFav ? "Retour" : "Voir mes favoris"}
         </button>
         <SearchBar onSearchChange={handleSearch} initialText={searchText} />
-        {isLoading && events.length === 0 ? (
+        {isLoading && events.length === 0 && !showFav? (
           <p>Chargement des événements...</p>
+        ) : null}
+        {showFav && events.length === 0 ? (
+          <p>Commencez par ajouter des événements dans vos favoris</p>
         ) : null}
 
         <Cards events={events} arr={favArr} setArr={setFavArr} />

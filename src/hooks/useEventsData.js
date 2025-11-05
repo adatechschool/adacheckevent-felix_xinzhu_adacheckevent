@@ -14,16 +14,22 @@ const useEventsData = (searchText, favArr, showFav) => {
 
     if (showFav) {
       if (favArr.length === 0) {
-        setFavData([]);
+        setEvents([]);
+        setIsLoading(false);
         return;
       }
-      const baseUrl = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records"
-      let favStrData = favArr.map((id) => `"${id}"`).join(","); //transformer mon favArr en un tableau de string et ensuite en ("id","id") pour le format url     console.log(favStrData)
-      let whereClause = `id in (${favStrData})`;
-      url = `${baseUrl}?where=${encodeURIComponent(whereClause)}`;
-      console.log(url)
-    } 
-    if (query.length >= 3) {
+
+      // Supprimer les doublons avant d’appeler l’API
+      const uniqueFav = Array.from(new Set(favArr));
+      const favStrData = uniqueFav.map((id) => `"${id}"`).join(",");
+      const whereClause = `id in (${favStrData})`;
+
+      url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?where=${encodeURIComponent(
+        whereClause
+      )}`;
+
+      console.log("URL favoris:", url);
+    } else if (query.length >= 3) {
       url += `&where=title%20like%20%22${encodeURIComponent(
         query
       )}%22%20or%20qfap_tags%20like%20%22${encodeURIComponent(query)}%22`;
@@ -32,13 +38,32 @@ const useEventsData = (searchText, favArr, showFav) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log("😭", data)
+      const results = data.results || [];
 
-      if (offset === 0) {
-        setEvents(data.results);
+      // Dédupliquer les résultats (id uniques)
+      const uniqueResults = Object.values(
+        results.reduce((acc, item) => {
+          acc[item.id] = item;
+          return acc;
+        }, {})
+      );
+
+      if (showFav) {
+        setEvents(uniqueResults);
+      } else if (offset === 0) {
+        setEvents(uniqueResults);
       } else {
-        setEvents((value) => [...value, ...data.results]);
-      } //... => spread operator : copier ce qu'il y a dans value et ajouter des nouveaux éléments data.results
+        setEvents((prev) => {
+          const merged = [...prev, ...uniqueResults];
+          const deduped = Object.values(
+            merged.reduce((acc, item) => {
+              acc[item.id] = item;
+              return acc;
+            }, {})
+          );
+          return deduped;
+        });
+      }
     } catch (error) {
       console.error("Erreur lors du chargement des données:", error);
       setEvents([]);
@@ -51,8 +76,11 @@ const useEventsData = (searchText, favArr, showFav) => {
   };
 
   useEffect(() => {
+    if (showFav) {
+      setOffSet(0);
+    }
     loadData(searchText);
-  }, [searchText, offset, showFav]);
+  }, [searchText, offset, showFav, favArr]);
 
   return { events, isLoading, setOffSet };
 };
