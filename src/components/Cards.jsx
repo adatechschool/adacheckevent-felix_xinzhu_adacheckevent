@@ -44,7 +44,7 @@ const Cards = ({ events, arr, setArr }) => {
         <div
           class="eventCard"
           key={elem.id}
-          className="flex flex-col bg-[#f6fff8] text-black items-center rounded-[20px] w-[300px] h-[600px] gap-5 p-4"
+          className="flex flex-col bg-[#f8f7f3] text-black items-center rounded-[20px] w-[300px] h-[600px] gap-5 p-4"
         >
           {elem.cover_url && (
             <div class="cover" className="relative w-full h-1/3 rounded-[10px]">
@@ -168,7 +168,7 @@ const Cards = ({ events, arr, setArr }) => {
               {elem.contact_url && (
                 <p>
                   <strong className="text-[#354bcf]">Site : </strong>
-                  <a href={elem.contact_url} target="_blank">
+                  <a className="underline" href={elem.contact_url} target="_blank">
                     visiter
                   </a>
                 </p>
@@ -176,7 +176,7 @@ const Cards = ({ events, arr, setArr }) => {
               {elem.contact_phone && (
                 <p>
                   <strong className="text-[#354bcf]">Téléphone : </strong>
-                  <a href={`tel:${elem.contact_phone.replace(/\s/g, "")}`}>
+                  <a className="underline" href={`tel:${elem.contact_phone.replace(/\s/g, "")}`}>
                     {elem.contact_phone}
                   </a>
                 </p>
@@ -184,7 +184,7 @@ const Cards = ({ events, arr, setArr }) => {
               {elem.contact_mail && (
                 <p>
                   <strong className="text-[#354bcf]">E-mail : </strong>
-                  <a href={`mailto:${elem.contact_mail.replace(/\s/g, "")}`}>
+                  <a className="underline" href={`mailto:${elem.contact_mail.replace(/\s/g, "")}`}>
                     {elem.contact_mail}
                   </a>
                 </p>
@@ -216,7 +216,7 @@ const Cards = ({ events, arr, setArr }) => {
                   {splitCategories(elem.qfap_tags).map(
                     (category, id, array) => (
                       <span key={id} className="category-link">
-                        <a href={`/tag/${cleanText(category)}`}>
+                        <a className="underline" href={`/tag/${cleanText(category)}`}>
                           {cleanText(category)}
                         </a>
                         {id < array.length - 1 && <span> ~ </span>}
