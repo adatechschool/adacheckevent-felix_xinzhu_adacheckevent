@@ -1,21 +1,22 @@
 function SearchBar({ onSearchChange, initialText = "" }) {
 
     const searchItems = (e) => {
-        const textInput = e.target.value;
+        const textInput = e.target.value.toLowerCase();
+        console.log(textInput)
         onSearchChange(textInput);
     };
 
     return (
-        <div id="searchBarContainer" className='flex flex-col m-0 mb-2 items-center'>
-            <label name="searchBar" >Cherchez votre événement :</label>
-            <input className='pt-1 pb-1 pl-5 pr-5 text-black bg-white text-center mt-2 mb-2 w-[300px] rounded-2xl'
+        <>
+            <input className='pl-5 pr-5 mt-5 h-8 text-black bg-white text-center w-75 rounded-2xl'
                 type="text"
                 id="searchBar"
                 name="searchBar"
                 onInput={searchItems}
                 defaultValue={initialText}
+                placeholder="Cherchez votre événement"
             />
-        </div>
+        </>
     );
 }
 

@@ -3,8 +3,9 @@ import "./App.css";
 import Cards from "./components/Cards.jsx";
 import { ButtonLoadMore } from "./components/ButtonLoadMore";
 import SearchBar from "./components/SearchBar.jsx";
+import SideMenu from "./components/SideMenu.jsx"
 import useEventsData from "./hooks/useEventsData";
-import logo from "./assets/logo.png";
+import { Croissant } from 'lucide-react';
 
 const getInitialSearchText = () => {
   const path = window.location.pathname;
@@ -22,30 +23,37 @@ function App() {
 
   const handleSearch = (text) => {
     setSearchText(text);
-    setOffSet(0); //remettre offset à zéro quand on fait une nouvelle recherche
+    setOffSet(0);
   };
 
   const handleLoadMore = () => {
-    setOffSet((value) => value + 5); // ajoute 5 de plus
+    setOffSet((value) => value + 5);
   };
 
   return (
     <>
-      <div class="logoContainer" className="w-[200px] h-[200px] mr-auto ml-auto">
-        <img src={logo} />
-      </div>
+      <main className="flex">
+        <SideMenu />
+        <div id="content" className="flex flex-col w-full items-center text-center">
+          <a href={`/`}><Croissant className="h-[100px] w-[100px] m-5" /><h1 className="text-center text-3xl">Panam'Events</h1></a>
+          <div id="searchBarContainer" className='flex flex-row m-0 mb-5 items-center justify-center flex-wrap gap-5'>
+            <SearchBar onSearchChange={handleSearch} initialText={searchText} />
+          </div >
 
-      <SearchBar onSearchChange={handleSearch} initialText={searchText} />
+          {isLoading && events.length === 0 ? (
+            <p>Chargement des événements...</p>
+          ) : (
+            <Cards events={events} />
+          )
+          }
 
-      {isLoading && events.length === 0 ? (
-        <p>Chargement des événements...</p>
-      ) : (
-        <Cards events={events} />
-      )}
-
-      {!isLoading && events.length > 0 && (
-        <ButtonLoadMore onClick={handleLoadMore} />
-      )}
+          {
+            !isLoading && events.length > 0 && (
+              <ButtonLoadMore onClick={handleLoadMore} />
+            )
+          }
+        </div>
+      </main>
     </>
   );
 }

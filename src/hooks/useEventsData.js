@@ -13,7 +13,7 @@ const useEventsData = (searchText) => {
     let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?offset=${offset}&limit=${limit}`;
 
     if (query.length >= 3) {
-      url += `&where=title%20like%20%22${encodeURIComponent(query)}%22%20or%20qfap_tags%20like%20%22${encodeURIComponent(query)}%22`;
+      url += `&where=title%20like%20%22${encodeURIComponent(query)}%22%20or%20qfap_tags%20like%20%22${encodeURIComponent(query)}%22%20or%20address_zipcode%20like%20%22${encodeURIComponent(query)}%22`;
     }
 
     try {
