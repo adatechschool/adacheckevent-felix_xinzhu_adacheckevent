@@ -37,10 +37,17 @@ Ajouter les tags comme éléments de recherche possible\
 Exploration du Tailwind en braches\
 
 ### 01/11/2025
-Debug: ajout des images et textes par défaut pour l'affichage des events
-Debug: Button Voir Plus
-Debug: cleanText appliqué aux titres 
-WIP: favoris et menu déroulant des localisations
-Nom de l'appli: Paname Events
+Debug: ajout des images et textes par défaut pour l'affichage des events\
+Debug: Button Voir Plus\
+Debug: cleanText appliqué aux titres\
+WIP: favoris et menu déroulant des localisations\
+Nom de l'appli: Paname Events\
+
+### 02/11/2025
+Fonctionnalité Voir mes favoris\
+Sidebar avec les options localisations et tag\
+Amélioration UI
+
+
 
 
