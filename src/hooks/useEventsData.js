@@ -11,7 +11,7 @@ const useEventsData = (searchText, favArr, showFav) => {
     setIsLoading(true);
 
     let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?offset=${offset}&limit=${limit}`;
-
+    //permet de passer à l'affichage mode liste favoris
     if (showFav) {
       if (favArr.length === 0) {
         setEvents([]);
@@ -28,7 +28,6 @@ const useEventsData = (searchText, favArr, showFav) => {
         whereClause
       )}`;
 
-      console.log("URL favoris:", url);
     } else if (query.length >= 3) {
       url += `&where=title%20like%20%22${encodeURIComponent(query)}%22%20or%20qfap_tags%20like%20%22${encodeURIComponent(query)}%22%20or%20address_zipcode%20like%20%22${encodeURIComponent(query)}%22`;
     }

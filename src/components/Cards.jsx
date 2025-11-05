@@ -232,7 +232,6 @@ const Cards = ({ events, arr, setArr }) => {
             clickedEvent={clickedEvent}
             setClickedEvent={setClickedEvent}
           />
-          {/* <p>{favArr}</p> */}
         </div>
       ))}
     </div>
