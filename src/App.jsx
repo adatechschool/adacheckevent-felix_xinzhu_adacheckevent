@@ -8,6 +8,18 @@ import useEventsData from "./hooks/useEventsData";
 import { Croissant } from 'lucide-react';
 import { Bookmark } from 'lucide-react';
 
+const FAVORITES_STORAGE_KEY = "panamEventsFavs";
+
+const getInitialFavArr = () => {
+  const storedFavs = localStorage.getItem(FAVORITES_STORAGE_KEY);
+  try {
+    return storedFavs ? JSON.parse(storedFavs) : [];
+  } catch (error) {
+    console.error("Erreur lors de la lecture des favoris du localStorage:", error);
+    return [];
+  }
+};
+
 const getInitialSearchText = () => {
   const path = window.location.pathname;
   const segments = path.split("/").filter(Boolean);
@@ -20,7 +32,7 @@ const getInitialSearchText = () => {
 
 function App() {
   const [searchText, setSearchText] = useState(getInitialSearchText);
-  const [favArr, setFavArr] = useState([]);
+  const [favArr, setFavArr] = useState(getInitialFavArr);
   const [showFav, setShowFav] = useState(false);
   const { events, isLoading, setOffSet } = useEventsData(
     searchText,
@@ -28,6 +40,9 @@ function App() {
     showFav
   );
 
+  useEffect(() => {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favArr));
+  }, [favArr]);
 
   const handleSearch = (text) => {
     setSearchText(text);
@@ -35,10 +50,8 @@ function App() {
   };
 
   const handleLoadMore = () => {
-    setOffSet((value) => value + 5);
+    setOffSet((value) => value + 20);
   };
-
-
 
   return (
     <>
@@ -64,10 +77,10 @@ function App() {
 
 
           {
-            !isLoading && events.length > 0 && (
-              <ButtonLoadMore onClick={handleLoadMore} />
-            )
-          }
+            !isLoading && events.length > 0 && !showFav && (
+              <ButtonLoadMore onClick={handleLoadMore} />
+            )
+          }
         </div>
       </main>
     </>

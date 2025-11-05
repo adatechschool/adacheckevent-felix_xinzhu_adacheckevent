@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useEventsData = (searchText, favArr, showFav) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const limit = 5;
+  const limit = 20;
   const [offset, setOffSet] = useState(0);
 
   const loadData = async (query = "") => {
