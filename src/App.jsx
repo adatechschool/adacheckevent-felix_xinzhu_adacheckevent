@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Cards from "./components/Cards.jsx";
 import { ButtonLoadMore } from "./components/ButtonLoadMore";
@@ -19,7 +19,14 @@ const getInitialSearchText = () => {
 
 function App() {
   const [searchText, setSearchText] = useState(getInitialSearchText);
-  const { events, isLoading, setOffSet } = useEventsData(searchText);
+  const [favArr, setFavArr] = useState([]);
+  const [showFav, setShowFav] = useState(false);
+  const { events, isLoading, setOffSet } = useEventsData(
+    searchText,
+    favArr,
+    showFav
+  );
+
 
   const handleSearch = (text) => {
     setSearchText(text);
@@ -30,7 +37,7 @@ function App() {
     setOffSet((value) => value + 5);
   };
 
-  return (
+return (
     <>
       <main className="flex">
         <SideMenu />
@@ -38,14 +45,21 @@ function App() {
           <a href={`/`}><Croissant className="h-[100px] w-[100px] m-5" /><h1 className="text-center text-3xl">Panam'Events</h1></a>
           <div id="searchBarContainer" className='flex flex-row m-0 mb-5 items-center justify-center flex-wrap gap-5'>
             <SearchBar onSearchChange={handleSearch} initialText={searchText} />
+
+        <button onClick={() => setShowFav(!showFav)}>
+          {showFav ? "Retour" : "Voir mes favoris"}
+        </button>
           </div >
 
-          {isLoading && events.length === 0 ? (
-            <p>Chargement des événements...</p>
-          ) : (
-            <Cards events={events} />
-          )
-          }
+          {isLoading && events.length === 0 && !showFav? (
+          <p>Chargement des événements...</p>
+        ) : null}
+        {showFav && events.length === 0 ? (
+          <p>Commencez par ajouter des événements dans vos favoris</p>
+        ) : null}
+
+        <Cards events={events} arr={favArr} setArr={setFavArr} />
+
 
           {
             !isLoading && events.length > 0 && (

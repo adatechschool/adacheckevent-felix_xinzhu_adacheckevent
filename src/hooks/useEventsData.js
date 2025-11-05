@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useEventsData = (searchText) => {
+const useEventsData = (searchText, favArr, showFav) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const limit = 5;
@@ -12,18 +12,56 @@ const useEventsData = (searchText) => {
 
     let url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?offset=${offset}&limit=${limit}`;
 
-    if (query.length >= 3) {
+    if (showFav) {
+      if (favArr.length === 0) {
+        setEvents([]);
+        setIsLoading(false);
+        return;
+      }
+
+      // Supprimer les doublons avant d’appeler l’API
+      const uniqueFav = Array.from(new Set(favArr));
+      const favStrData = uniqueFav.map((id) => `"${id}"`).join(",");
+      const whereClause = `id in (${favStrData})`;
+
+      url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?where=${encodeURIComponent(
+        whereClause
+      )}`;
+
+      console.log("URL favoris:", url);
+    } else if (query.length >= 3) {
       url += `&where=title%20like%20%22${encodeURIComponent(query)}%22%20or%20qfap_tags%20like%20%22${encodeURIComponent(query)}%22%20or%20address_zipcode%20like%20%22${encodeURIComponent(query)}%22`;
     }
 
     try {
       const res = await fetch(url);
       const data = await res.json();
-      if (offset === 0) {
-        setEvents(data.results);
+      const results = data.results || [];
+
+      // Dédupliquer les résultats (id uniques)
+      const uniqueResults = Object.values(
+        results.reduce((acc, item) => {
+          acc[item.id] = item;
+          return acc;
+        }, {})
+      );
+
+      if (showFav) {
+        setEvents(uniqueResults);
+      } else if (offset === 0) {
+        setEvents(uniqueResults);
       } else {
-        setEvents((value) => [...value, ...data.results]);
-      } //... => spread operator : copier ce qu'il y a dans value et ajouter des nouveaux éléments data.results
+        setEvents((prev) => {
+          const merged = [...prev, ...uniqueResults];
+          const deduped = Object.values(
+            merged.reduce((acc, item) => {
+              acc[item.id] = item;
+              return acc;
+            }, {})
+          );
+          return deduped;
+        });
+      }
     } catch (error) {
       console.error("Erreur lors du chargement des données:", error);
       setEvents([]);
@@ -36,8 +74,11 @@ const useEventsData = (searchText) => {
   };
 
   useEffect(() => {
+    if (showFav) {
+      setOffSet(0);
+    }
     loadData(searchText);
-  }, [searchText, offset]);
+  }, [searchText, offset, showFav, favArr]);
 
   return { events, isLoading, setOffSet };
 };

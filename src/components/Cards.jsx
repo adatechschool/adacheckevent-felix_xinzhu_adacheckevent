@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { ButtonSeeMore } from "./ButtonSeeMore";
 import placeholderCover from "../assets/logo.png";
+import { FavorisIcon } from "./FavorisIcon";
 
-const Cards = ({ events }) => {
+const Cards = ({ events, arr, setArr}) => {
   const [clickedEvent, setClickedEvent] = useState();
+
 
   const cleanText = (val) => {
     if (val !== null) {
@@ -32,6 +34,7 @@ const Cards = ({ events }) => {
     return tag;
   };
 
+
   return (
     <div
       id="cardsContainer"
@@ -44,7 +47,10 @@ const Cards = ({ events }) => {
           className="flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-[20px] p-4"
         >
           {elem.cover_url && (
-            <div class="cover" className="w-full h-1/3 rounded-[10px]">
+            <div class="cover" className="relative w-full h-1/3 rounded-[10px]">
+              <FavorisIcon 
+              id={elem.id} arr={arr} setArr={setArr}
+              />
               <a href={elem.access_link} target="_blank">
                 <img
                   src={elem.cover_url}
@@ -232,6 +238,7 @@ const Cards = ({ events }) => {
             clickedEvent={clickedEvent}
             setClickedEvent={setClickedEvent}
           />
+          {/* <p>{favArr}</p> */}
         </div>
       ))}
     </div>
