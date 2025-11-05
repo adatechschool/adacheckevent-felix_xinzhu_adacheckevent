@@ -1,5 +1,4 @@
 import { Croissant } from 'lucide-react';
-import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
 
 const SideMenu = () => {
@@ -37,8 +36,6 @@ const SideMenu = () => {
                 <Croissant className="mr-2.5" />MENU</div>
 
             <div id="sideBar" className={sidebarClasses}>
-                <h2 className='flex'>Favoris <Bookmark /></h2>
-                <br />
                 <h2>Arrondissements</h2>
                 <div className="flex flex-row flex-wrap">
                     {zipCode.map((elem, id) => (

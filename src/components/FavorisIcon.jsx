@@ -24,7 +24,7 @@ export function FavorisIcon({ id, arr, setArr }) {
   return (
     <button
       onClick={handleFavoris}
-      className="absolute top-2 right-2"
+      className="absolute top-2 right-2 cursor-pointer"
     >
       {isFav ? <BookmarkCheck color="white" /> : <Bookmark color="white" />}
     </button>

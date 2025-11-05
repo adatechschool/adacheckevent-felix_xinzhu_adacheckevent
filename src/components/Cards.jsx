@@ -3,7 +3,7 @@ import { ButtonSeeMore } from "./ButtonSeeMore";
 import placeholderCover from "../assets/logo.png";
 import { FavorisIcon } from "./FavorisIcon";
 
-const Cards = ({ events, arr, setArr}) => {
+const Cards = ({ events, arr, setArr }) => {
   const [clickedEvent, setClickedEvent] = useState();
 
 
@@ -38,26 +38,24 @@ const Cards = ({ events, arr, setArr}) => {
   return (
     <div
       id="cardsContainer"
-      className="flex flex-row flex-wrap justify-center gap-[20px]"
+      className="flex flex-row pl-5 pr-5 flex-wrap justify-center gap-[20px]"
     >
       {events.map((elem) => (
         <div
           class="eventCard"
           key={elem.id}
-          className="flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-[20px] p-4"
+          className="flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-5 p-4"
         >
           {elem.cover_url && (
             <div class="cover" className="relative w-full h-1/3 rounded-[10px]">
-              <FavorisIcon 
-              id={elem.id} arr={arr} setArr={setArr}
+              <FavorisIcon
+                id={elem.id} arr={arr} setArr={setArr}
               />
-              <a href={elem.access_link} target="_blank">
-                <img
-                  src={elem.cover_url}
-                  alt={elem.cover_alt}
-                  className="w-full h-full object-cover rounded-[10px] object-center"
-                />
-              </a>
+              <img
+                src={elem.cover_url}
+                alt={elem.cover_alt}
+                className="w-full h-full object-cover rounded-[10px] object-center"
+              />
             </div>
           )}
           {clickedEvent !== elem.id ? (
@@ -65,22 +63,18 @@ const Cards = ({ events, arr, setArr}) => {
               class="alwaysVisible"
               className="flex flex-col w-full text-left"
             >
-              <a href={elem.access_link} target="_blank">
-                <h1 className="text-2xl text-[#354bcf]">
-                  {reduceText(cleanText(elem.title), 50)}
-                </h1>
-              </a>
+              <h1 className="text-2xl text-[#354bcf]">
+                {reduceText(cleanText(elem.title), 50)}
+              </h1>
             </div>
           ) : (
             <div
               class="alwaysVisible"
               className="flex flex-col w-full text-left"
             >
-              <a href={elem.access_link} target="_blank">
-                <h1 className="text-2xl text-[#354bcf]">
-                  {cleanText(elem.title)}
-                </h1>
-              </a>
+              <h1 className="text-2xl text-[#354bcf]">
+                {cleanText(elem.title)}
+              </h1>
             </div>
           )}
 
