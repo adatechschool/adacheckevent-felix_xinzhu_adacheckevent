@@ -50,7 +50,7 @@ function App() {
   };
 
   const handleLoadMore = () => {
-    setOffSet((value) => value + 5);
+    setOffSet((value) => value + 20);
   };
 
   return (
