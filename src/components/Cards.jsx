@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ButtonSeeMore } from './ButtonSeeMore';
+import placeholderCover from '../assets/logo.png';
 
 const Cards = ({ events }) => {
 
@@ -30,25 +31,33 @@ const Cards = ({ events }) => {
 
 
   return (
-    <div id="cardsContainer" className='flex flex-row flex-wrap justify-center gap-[20px]'>
+    <div id="cardsContainer" className='flex flex-row flex-wrap justify-center gap-5'>
       {events.map((elem) => (
-        <div class="eventCard" key={elem.id} className='flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-[20px] p-4' >
+        <div id="eventCard" key={elem.id} className='flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-5 p-4' >
           {elem.cover_url && (
-            <div class="cover" className='w-full h-1/3 rounded-[10px]'>
-              <a href={elem.access_link} target="_blank"><img src={elem.cover_url} alt={elem.cover_alt} className='w-full h-full object-cover rounded-[10px] object-center'/></a>
+            <div id="cover" className='w-full h-1/3 rounded-[10px]'>
+              <img src={elem.cover_url} alt={elem.cover_alt} className='w-full h-full object-cover rounded-[10px] object-center'/>
             </div>
           )}
-          <div class="alwaysVisible" className='flex flex-col w-full text-left'>
-            <a href={elem.access_link} target="_blank"><h1 className="text-2xl text-[#354bcf]">{cleanText(elem.title)}</h1></a>
+          {!elem.cover_url && (
+            <div id="cover" className='w-full h-1/3 rounded-[10px]'>
+              <img src={placeholderCover} alt={elem.cover_alt} className='w-full h-full object-cover rounded-[10px] object-center'/>
+            </div>
+          )}
+
+          <div id="alwaysVisible" className='flex flex-col w-full text-left'>
+            <h1 className="text-2xl text-[#354bcf]">{cleanText(elem.title)}</h1>
           </div>
 
           {clickedEvent !== elem.id ? (
-            <div class="shortInfos" className='flex flex-col w-full text-left'>
-              <p class="description">{reduceText(cleanText(elem.description))}</p>
+            <div id="shortInfos" className='flex flex-col w-full text-left'>              
+              {elem.description && (<p id="description" className='text-left'>{reduceText(cleanText(elem.description))}</p>)}
+              {!elem.description && (<p id="description" className='text-left'>Visitez notre site pour plus d'informations.</p>)}
             </div>
           ) : (
             <div class="seeMoreInfos" className='flex flex-col w-full text-left overflow-y-scroll'>
-              <p class="description" className='text-left'>{cleanText(elem.description)}</p>
+              {elem.description && (<p class="description" className='text-left'>{cleanText(elem.description)}</p>)}
+              {!elem.description && (<p class="description" className='text-left'>Visitez notre site pour plus d'informations.</p>)}
               <br />
               {elem.contact_organisation_name && (<p><strong>Organisé par : </strong>{cleanText(elem.contact_organisation_name)}</p>)}
               {(elem.locations[0].text || elem.locations[0].address_name || elem.locations[0].address_street || elem.locations[0].address_zipcode || elem.locations[0].address_city) && (
@@ -74,12 +83,12 @@ const Cards = ({ events }) => {
               {elem.qfap_tags && (
                 <p>
                   <strong>Catégorie : </strong>
-                  {splitCategories(elem.qfap_tags).map((category, index, array) => (
-                    <span key={index} className="category-link">
+                  {splitCategories(elem.qfap_tags).map((category, id, array) => (
+                    <span key={id} className="category-link">
                       <a href={`/tag/${cleanText(category)}`}>
                         {cleanText(category)}
                       </a>
-                      {index < array.length - 1 && <span> ~ </span>}
+                      {id < array.length - 1 && <span> ~ </span>}
                     </span>
                   ))}
                 </p>
