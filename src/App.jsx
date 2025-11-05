@@ -48,7 +48,7 @@ function App() {
           {showFav ? "RETOUR" : <Bookmark />}
         </button>
         <div id="content" className="flex flex-col w-full items-center text-center">
-          <a href={`/`}><Croissant className="h-[100px] w-[100px] m-5" /><h1 className="text-center text-3xl">Panam'Events</h1></a>
+          <a href={`/`} className="flex flex-col w-full items-center"><Croissant className=" h-[100px] w-[100px] m-5" /><h1 id="title" className="text-center text-5xl">Panam'Events</h1></a>
           <div id="searchBarContainer" className='flex flex-row m-0 mb-5 items-center justify-center flex-wrap gap-5'>
             <SearchBar onSearchChange={handleSearch} initialText={searchText} />
           </div >

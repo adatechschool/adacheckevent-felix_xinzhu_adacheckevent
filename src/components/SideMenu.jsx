@@ -12,7 +12,7 @@ const SideMenu = () => {
         'pt-15',
         'top-0',
         'h-screen',
-        'bg-[#354bcf]',
+        'bg-[#FFA726]',
         'w-75',
         'gap-2'
     ].join(' ');
@@ -31,7 +31,7 @@ const SideMenu = () => {
         <>
             <div
                 id="menuToggle"
-                className="flex row fixed z-1 p-2.5 cursor-pointer bg-[#354bcf] rounded-br-[10px]"
+                className="flex row fixed z-1 p-2.5 cursor-pointer bg-[#FFA726] rounded-br-[10px]"
                 onClick={() => setIsOpen(!isOpen)}>
                 <Croissant className="mr-2.5" />MENU</div>
 
