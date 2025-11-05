@@ -44,7 +44,7 @@ const Cards = ({ events, arr, setArr }) => {
         <div
           class="eventCard"
           key={elem.id}
-          className="flex flex-col bg-white text-black items-center rounded-[20px] w-[300px] h-[600px] gap-5 p-4"
+          className="flex flex-col bg-[#f6fff8] text-black items-center rounded-[20px] w-[300px] h-[600px] gap-5 p-4"
         >
           {elem.cover_url && (
             <div class="cover" className="relative w-full h-1/3 rounded-[10px]">
@@ -109,7 +109,7 @@ const Cards = ({ events, arr, setArr }) => {
               <br />
               {elem.contact_organisation_name && (
                 <p>
-                  <strong>Organisé par : </strong>
+                  <strong className="text-[#354bcf]">Organisé par : </strong>
                   {cleanText(elem.contact_organisation_name)}
                 </p>
               )}
@@ -120,7 +120,7 @@ const Cards = ({ events, arr, setArr }) => {
                   elem.locations[0].address_zipcode ||
                   elem.locations[0].address_city) && (
                   <p>
-                    <strong>Où : </strong>
+                    <strong className="text-[#354bcf]">Où : </strong>
                     {elem.locations[0].text && (
                       <span>{cleanText(elem.locations[0].text)}</span>
                     )}
@@ -145,7 +145,7 @@ const Cards = ({ events, arr, setArr }) => {
 
               {elem.date_description && (
                 <p>
-                  <strong>Quand : </strong>
+                  <strong className="text-[#354bcf]">Quand : </strong>
                   {cleanText(elem.date_description)}
                 </p>
               )}
@@ -153,13 +153,13 @@ const Cards = ({ events, arr, setArr }) => {
                 <>
                   {elem.date_start && (
                     <p>
-                      <strong>Début : </strong>
+                      <strong className="text-[#354bcf]">Début : </strong>
                       {elem.date_start}
                     </p>
                   )}
                   {elem.date_end && (
                     <p>
-                      <strong>Fin : </strong>
+                      <strong className="text-[#354bcf]">Fin : </strong>
                       {elem.date_end}
                     </p>
                   )}
@@ -167,7 +167,7 @@ const Cards = ({ events, arr, setArr }) => {
               )}
               {elem.contact_url && (
                 <p>
-                  <strong>Site : </strong>
+                  <strong className="text-[#354bcf]">Site : </strong>
                   <a href={elem.contact_url} target="_blank">
                     visiter
                   </a>
@@ -175,7 +175,7 @@ const Cards = ({ events, arr, setArr }) => {
               )}
               {elem.contact_phone && (
                 <p>
-                  <strong>Téléphone : </strong>
+                  <strong className="text-[#354bcf]">Téléphone : </strong>
                   <a href={`tel:${elem.contact_phone.replace(/\s/g, "")}`}>
                     {elem.contact_phone}
                   </a>
@@ -183,7 +183,7 @@ const Cards = ({ events, arr, setArr }) => {
               )}
               {elem.contact_mail && (
                 <p>
-                  <strong>E-mail : </strong>
+                  <strong className="text-[#354bcf]">E-mail : </strong>
                   <a href={`mailto:${elem.contact_mail.replace(/\s/g, "")}`}>
                     {elem.contact_mail}
                   </a>
@@ -191,7 +191,7 @@ const Cards = ({ events, arr, setArr }) => {
               )}
               {elem.price_type !== "gratuit" && (
                 <p>
-                  <strong>
+                  <strong className="text-[#354bcf]">
                     {capitalizeFirstLetter(cleanText(elem.price_type))} :{" "}
                   </strong>
                   {cleanText(elem.price_detail)}
@@ -199,20 +199,20 @@ const Cards = ({ events, arr, setArr }) => {
               )}
               {elem.price_type === "gratuit" && (
                 <p>
-                  <strong>
+                  <strong className="text-[#354bcf]">
                     {capitalizeFirstLetter(cleanText(elem.price_type))}
                   </strong>
                 </p>
               )}
               {elem.audience && (
                 <p>
-                  <strong>Audience : </strong>
+                  <strong className="text-[#354bcf]">Audience : </strong>
                   {cleanText(elem.audience)}
                 </p>
               )}
               {elem.qfap_tags && (
                 <p>
-                  <strong>Catégorie : </strong>
+                  <strong className="text-[#354bcf]">Catégorie : </strong>
                   {splitCategories(elem.qfap_tags).map(
                     (category, id, array) => (
                       <span key={id} className="category-link">
