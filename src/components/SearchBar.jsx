@@ -2,7 +2,6 @@ function SearchBar({ onSearchChange, initialText = "" }) {
 
     const searchItems = (e) => {
         const textInput = e.target.value.toLowerCase();
-        console.log(textInput)
         onSearchChange(textInput);
     };
 
