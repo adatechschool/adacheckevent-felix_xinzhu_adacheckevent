@@ -72,10 +72,7 @@ function App() {
           {showFav && events.length === 0 ? (
             <p>Commencez par ajouter des événements dans vos favoris</p>
           ) : null}
-
           <Cards events={events} arr={favArr} setArr={setFavArr} />
-
-
           {
             !isLoading && events.length > 0 && !showFav && (
               <ButtonLoadMore onClick={handleLoadMore} />
